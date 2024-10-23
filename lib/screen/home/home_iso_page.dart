@@ -1,5 +1,6 @@
 import 'package:cupertino_app/screen/home/provider/home_provider.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class HomeIsoPage extends StatefulWidget {
@@ -12,24 +13,34 @@ class HomeIsoPage extends StatefulWidget {
 class _HomeIsoPageState extends State<HomeIsoPage> {
   @override
   Widget build(BuildContext context) {
-    return   CupertinoPageScaffold(
+    return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        middle: const Text("iSO"),
+        middle: const Text("iOS"),
         trailing: CupertinoSwitch(
-            value:  context.watch<HomeProvider>().isAndroid,
-            onChanged: (value) {
-              context.read<HomeProvider>().isChangeAndroid();
-             },
+          value: context.watch<HomeProvider>().isAndroid,
+          onChanged: (value) {
+            context.read<HomeProvider>().isChangeAndroid();
+          },
         ),
       ),
-      child: const Center(
-        child: Text("iSO VERSION",
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-           fontSize: 40,
-        ),
+      backgroundColor: CupertinoColors.white,
+      child: Center(
+        child: ElevatedButton(
+          onPressed: () {
+             Scaffold.of(context).showBottomSheet(
+                 (BuildContext context){
+                   return const Column(
+                     children: [
+                       Text("iSO"),
+                       Text("iOS version "),
+                     ],
+                   );
+                 }
+             );
+          },
+          child: const Text("Show BottomSheet"),
         ),
       ),
-     );
+    );
   }
 }

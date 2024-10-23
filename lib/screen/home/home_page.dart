@@ -28,15 +28,44 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      backgroundColor: Colors.black,
-      body: const Center(
-        child: Text("ANDROID VERSION",
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 40,
-          fontWeight: FontWeight.bold,
-        ),
-        ),
+      backgroundColor: Colors.white,
+      body:  Center(
+        child: ElevatedButton(onPressed: () {
+          showModalBottomSheet(
+              context: context,
+              builder: (context){
+                return BottomSheet(onClosing: () {
+
+                },
+                    builder: (context) {
+                      return const Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                         children: [
+                           SizedBox(height: 20),
+                           Text("Android",
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                          SizedBox(height: 20),
+                          Text("ShowModalBottomSheet in Android",
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      ],
+                      );
+                    },);
+              }
+          );
+        },
+            child: const Text("ShowModalBottomSheet",
+            style: TextStyle(
+              fontSize: 20,
+            ),
+            ),),
       ),
     );
   }
